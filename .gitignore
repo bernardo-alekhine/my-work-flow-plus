@@ -356,3 +356,9 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# === Personal / Workspace Overrides ===
+notes/
+lab/
+.vscode/
+.devcontainer
