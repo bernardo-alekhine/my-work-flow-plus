@@ -43,3 +43,12 @@ pythonVersion = "3.12"
 typeCheckingMode = "strict"
 include = ["apps"]
 exclude = ["**/node_modules", "**/__pycache__", ".venv", "migrations"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings" 
+
+# Ensures pytest finds test files
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+
+# Speed up tests
+addopts = "--reuse-db"
