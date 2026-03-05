@@ -5,3 +5,9 @@ flake8
 pytest
 mypy
 pyright[nodejs]
+pytest-django
+pip-audit
+bandit
+django-extensions
+factory-boy
+pytest-cov
