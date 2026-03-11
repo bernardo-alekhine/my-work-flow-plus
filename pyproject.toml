@@ -1,10 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my-workflow-plus"
+version = "0.1.0"
+dependencies = ["Django==6.0.3", "django-environ==0.13.0", "gunicorn==25.1.0"]
+
 [tool.black]
 line-length = 120
 
 target-version = ["py312"]
 
-include = "\.pyi?$"
-extend-exclude = """
+include = '\.pyi?$'
+extend-exclude = '''
 /(
     \.git
 
@@ -19,13 +28,15 @@ extend-exclude = """
   | build
   | dist
 )/
-"""
+'''
 
 [tool.mypy]
+mypy_path = "src"
 python_version = "3.12"
 # Required for Django projects:
 plugins = ["mypy_django_plugin.main"]
 strict = true
+plugins.django-stubs.django_settings_module = "config.settings" 
 exclude = [
     "node_modules",
     "__pycache__",
@@ -35,9 +46,6 @@ exclude = [
     "build"
 ]
 
-[tool.mypy.plugins.django-stubs]
-django_settings_module = "config.settings"
-
 [tool.pyright]
 pythonVersion = "3.12"
 typeCheckingMode = "strict"
@@ -45,6 +53,7 @@ include = ["apps"]
 exclude = ["**/node_modules", "**/__pycache__", ".venv", "migrations"]
 
 [tool.pytest.ini_options]
+pythonpath = ["src"]
 DJANGO_SETTINGS_MODULE = "config.settings" 
 
 # Ensures pytest finds test files
