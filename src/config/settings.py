@@ -34,6 +34,8 @@ DEBUG = env("DJANGO_DEBUG")
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
 
+ROOT_URLCONF = "src.config.urls"
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,14 +45,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "apps.core",
-    "apps.accounts",
-    "apps.inventory",
-    "apps.human_resources",
-    "apps.financial",
-    "apps.services",
-    "apps.audit_log",
-    "apps.purchases",
+    "src.apps.core",
+    "src.apps.accounts",
+    "src.apps.inventory",
+    "src.apps.human_resources",
+    "src.apps.financial",
+    "src.apps.services",
+    "src.apps.audit_log",
+    "src.apps.purchases",
 ]
 
 MIDDLEWARE = [
@@ -63,7 +65,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF = "src.config.urls"
 
 TEMPLATES = [
     {
@@ -80,7 +82,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"
+WSGI_APPLICATION = "src.config.wsgi.application"
 
 
 # Database
