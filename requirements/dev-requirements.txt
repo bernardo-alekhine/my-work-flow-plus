@@ -12,3 +12,4 @@ django-extensions
 factory-boy
 pytest-cov
 pytest-django
+django-stubs

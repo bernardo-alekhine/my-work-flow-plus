@@ -27,12 +27,9 @@ environ.Env.read_env(PROJECT_ROOT / ".env")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DJANGO_DEBUG")
-
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
 
 # Application definition
@@ -44,14 +41,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "apps.core",
-    "apps.accounts",
-    "apps.inventory",
-    "apps.human_resources",
-    "apps.financial",
-    "apps.services",
-    "apps.audit_log",
-    "apps.purchases",
+    "backend.apps.core",
+    "backend.apps.accounts",
+    "backend.apps.inventory",
+    "backend.apps.human_resources",
+    "backend.apps.financial",
+    "backend.apps.services",
+    "backend.apps.audit_log",
+    "backend.apps.purchases",
 ]
 
 MIDDLEWARE = [
@@ -64,7 +61,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF = "backend.config.urls"
 
 TEMPLATES = [
     {
@@ -81,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"
+WSGI_APPLICATION = "backend.config.wsgi.application"
 
 
 # Database
