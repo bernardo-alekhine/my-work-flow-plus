@@ -1,0 +1,13 @@
+[run]
+# Only measure folder with django apps
+source = backend
+
+omit = 
+    */migrations/*
+    backend/manage.py
+    backend/wsgi.py
+    backend/asgi.py
+
+[report]
+# Show which lines were missed in the terminal output
+show_missing = True
