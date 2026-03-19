@@ -34,14 +34,12 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PATH="/opt/venv/bin:$PATH"
-ENV PYTHONPATH="/app/backend/:$PYTHONPATH"
+ENV PYTHONPATH="/app:$PYTHONPATH"
 
 # Copy Python dependencies from builder
 COPY --from=builder --chown=appuser:appuser /opt/venv /opt/venv
 
 COPY --chown=appuser:appuser . /app/
-
-WORKDIR /app/backend
 
 # Switch to non-root user
 USER appuser
@@ -54,4 +52,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:8000/ || exit 1
 
 # Run gunicorn
-CMD ["gunicorn", "-c", "gunicorn.conf.py"]
+CMD ["gunicorn", "-c", "backend/gunicorn.conf.py"]

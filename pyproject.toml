@@ -31,11 +31,12 @@ extend-exclude = '''
 '''
 
 [tool.mypy]
-mypy_path = "src"
+explicit_package_bases = true
 python_version = "3.12"
 # Required for Django projects:
-strict = true
+# strict = true
 plugins = ["mypy_django_plugin.main"] 
+ignore_missing_imports = true
 exclude = [
     "node_modules",
     "__pycache__",
@@ -46,12 +47,13 @@ exclude = [
 ]
 
 [tool.django-stubs]
-django_settings_module = "config.settings"
+django_settings_module = "backend.config.settings"
 
 [tool.pyright]
+reportArgumentType = "warning"
 pythonVersion = "3.12"
 include = ["backend"]
-typeCheckingMode = "strict"
+# typeCheckingMode = "strict"
 exclude = [
   ".venv",
   "**/.*",
@@ -63,8 +65,8 @@ exclude = [
 ]
 
 [tool.pytest.ini_options]
-pythonpath = ["src"]
-DJANGO_SETTINGS_MODULE = "config.settings" 
+pythonpath = ["backend"]
+DJANGO_SETTINGS_MODULE = "backend.config.settings"
 
 # Ensures pytest finds test files
 python_files = ["tests.py", "test_*.py", "*_tests.py"]

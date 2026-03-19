@@ -18,21 +18,16 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = BASE_DIR.parent
 
-env = environ.Env(
-    DJANGO_DEBUG=(bool, False)
-)
+env = environ.Env(DJANGO_DEBUG=(bool, False))
 
 environ.Env.read_env(PROJECT_ROOT / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DJANGO_DEBUG")
-
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
 
 # Application definition
@@ -44,14 +39,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "apps.core",
-    "apps.accounts",
-    "apps.inventory",
-    "apps.human_resources",
-    "apps.financial",
-    "apps.services",
-    "apps.audit_log",
-    "apps.purchases",
+    "backend.apps.core",
+    "backend.apps.accounts",
+    "backend.apps.inventory",
+    "backend.apps.human_resources",
+    "backend.apps.financial",
+    "backend.apps.services",
+    "backend.apps.audit_log",
+    "backend.apps.purchases",
 ]
 
 MIDDLEWARE = [
@@ -64,12 +59,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF = "backend.config.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [PROJECT_ROOT / "templates",],
+        "DIRS": [
+            PROJECT_ROOT / "templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -81,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"
+WSGI_APPLICATION = "backend.config.wsgi.application"
 
 
 # Database
@@ -140,14 +137,12 @@ STATICFILES_DIRS = [
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-
     "formatters": {
         "verbose": {
             "format": "[{asctime}] {levelname} {name} {message}",
             "style": "{",
         },
     },
-
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
@@ -159,7 +154,6 @@ LOGGING = {
             "formatter": "verbose",
         },
     },
-
     "loggers": {
         "django": {
             "handlers": ["console"],
@@ -173,6 +167,6 @@ LOGGING = {
         "root": {
             "handlers": ["console", "file"],
             "level": "INFO",
-        }
+        },
     },
 }

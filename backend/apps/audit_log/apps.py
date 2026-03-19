@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class AuditLogConfig(AppConfig):
-    name = "apps.audit_log"
+    name = "backend.apps.audit_log"

@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class HumanResourcesConfig(AppConfig):
-    name = "apps.human_resources"
+    name = "backend.apps.human_resources"
