@@ -18,9 +18,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = BASE_DIR.parent
 
-env = environ.Env(
-    DJANGO_DEBUG=(bool, False)
-)
+env = environ.Env(DJANGO_DEBUG=(bool, False))
 
 environ.Env.read_env(PROJECT_ROOT / ".env")
 
@@ -66,7 +64,9 @@ ROOT_URLCONF = "backend.config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [PROJECT_ROOT / "templates",],
+        "DIRS": [
+            PROJECT_ROOT / "templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -137,14 +137,12 @@ STATICFILES_DIRS = [
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-
     "formatters": {
         "verbose": {
             "format": "[{asctime}] {levelname} {name} {message}",
             "style": "{",
         },
     },
-
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
@@ -156,7 +154,6 @@ LOGGING = {
             "formatter": "verbose",
         },
     },
-
     "loggers": {
         "django": {
             "handlers": ["console"],
@@ -170,6 +167,6 @@ LOGGING = {
         "root": {
             "handlers": ["console", "file"],
             "level": "INFO",
-        }
+        },
     },
 }
