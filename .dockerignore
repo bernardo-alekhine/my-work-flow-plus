@@ -106,6 +106,9 @@ frontend/.next/
 # Catch any other node_modules as fallback
 **/node_modules/
 
+# Django sqlite
+db.sqlite3
+
 # === Personal / Workspace Overrides ===
 notes/
 lab/

@@ -11,15 +11,27 @@ services:
     ports:
       - "${APP_PORT:-8000}:8000"
     volumes:
-      # Mount the root folder to /app so changes reflect instantly
       - ../:/app
-      # Prevents the container's logs folder from being overwritten by your host
+      - /app/venv/
       - logsvolume:/app/logs
     stdin_open: true
     tty: true 
     environment:
-      - DJANGO_SETTINGS_MODULE=backend.config.settings
+      - DJANGO_SETTINGS_MODULE=config.settings
+      - PYTHONPATH=/app/backend
       - PYTHONUNBUFFERED=1
+
+  django_test:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      target: tester
+    profiles: ["test"]
+    restart: "no"
+    env_file:
+      - ../.env
+    command: ["python", "manage.py", "test", "--noinput"]
+
   db:
     image: postgres:16
     container_name: postgres-container
